@@ -1,49 +1,103 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ШШГБ - Хууль, журам, стандартын сан</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    const data = {
+      "Хорих ял эдлүүлэх ажиллагааны чиглэлээр": [
+        { name: "Хорих ангийн дотоод журам", type: "Журам", link: "#" },
+        { name: "Ялтны хөдөлмөр эрхлэлттэй холбоотой дүрэм", type: "Дүрэм", link: "#" },
+      ],
+      "Баривчлах шийтгэл эдлүүлэх ажиллагааны чиглэлээр": [
+        { name: "Баривчлах байрны дотоод журам", type: "Журам", link: "#" },
+      ],
+      "Шийдвэр гүйцэтгэх ажиллагааны чиглэлээр": [
+        { name: "Шүүхийн шийдвэр гүйцэтгэх тухай хууль", type: "Хууль", link: "#" },
+      ],
+      "Хорихоос өөр төрлийн ял эдлүүлэх ажиллагааны чиглэлээр": [
+        { name: "Нийгэмд тустай ажил хийлгэх шийтгэл гүйцэтгэх журам", type: "Журам", link: "#" },
+      ],
+      "Албадан эмчлэх чиглэлээр": [
+        { name: "Албадан эмчлэх ажиллагааны дүрэм", type: "Дүрэм", link: "#" },
+      ],
+      "Санхүүгийн чиглэлээр": [
+        { name: "Санхүүгийн үйл ажиллагааны заавар", type: "Заавар", link: "#" },
+        { name: "Төсөв, тайлангийн журам", type: "Журам", link: "#" },
+      ],
+      "Захиргаа, удирдлагын чиглэлээр": [
+        { name: "Байгууллагын дотоод журам", type: "Журам", link: "#" },
+        { name: "Ажлын төлөвлөгөө боловсруулах заавар", type: "Заавар", link: "#" },
+      ],
+      "Хүний нөөцийн чиглэлээр": [
+        { name: "Алба хаагчийн ёс зүйн дүрэм", type: "Дүрэм", link: "#" },
+        { name: "Сургалтын журам", type: "Журам", link: "#" },
+        { name: "Хөдөлмөрийн дотоод журам", type: "Журам", link: "Хөдөлмөрийн дотоод журам 2025.pdf" },
+      ],
+      "Цэргийн хэргийн мэдлэгийн чиглэлээр": [
+        { name: "Цэргийн бэлэн байдлын журам", type: "Журам", link: "#" },
+      ],
+      "Шагнал урамшууллын чиглэлээр": [
+        { name: "Шагнал урамшууллын журам", type: "Журам", link: "#" },
+      ],
+      "Ёс зүйн чиглэлээр": [
+        { name: "Ёс зүйн хорооны дүрэм", type: "Дүрэм", link: "#" },
+        { name: "Ёс зүйн зөрчлийн бүртгэл, хяналтын журам", type: "Журам", link: "#" },
+      ],
+      "Шинээр томилогдсон алба хаагчдын чиглэлээр": [
+        { name: "Алба хаагчийн тангараг өргөх журам", type: "Журам", link: "#" },
+        { name: "Ажлын байранд дасан зохицох хөтөлбөр", type: "Хөтөлбөр", link: "#" },
+      ],
+    };
+
+    function showCategory(cat) {
+      const results = document.getElementById("results");
+      results.innerHTML = "";
+      data[cat].forEach((item) => {
+        const div = document.createElement("div");
+        div.className = "bg-white p-4 rounded shadow hover:bg-gray-50";
+        div.innerHTML = `
+          <h2 class="text-lg font-semibold">${item.name}</h2>
+          <p class="text-sm text-gray-500">Төрөл: ${item.type}</p>
+          <a href="${item.link}" target="_blank" class="text-blue-600 underline">Баримт үзэх</a>
+        `;
+        results.appendChild(div);
+      });
+    }
+  </script>
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <header class="bg-blue-900 text-white p-4">
-    <h1 class="text-xl font-semibold text-center">ШШГБ - Хууль, журам, стандартын сан</h1>
+
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-blue-900 text-white p-4 text-center shadow">
+    <h1 class="text-xl sm:text-2xl font-semibold">
+      ШШГБ - Хууль, журам, стандартын сан
+    </h1>
   </header>
 
-  <main class="max-w-4xl mx-auto mt-6 p-4">
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-      <input id="search" type="text" placeholder="Хайх үгээ бичнэ үү..." 
-        class="border border-gray-300 p-2 rounded w-full sm:w-2/3 mb-2 sm:mb-0">
-      <select id="category" class="border border-gray-300 p-2 rounded w-full sm:w-1/3">
-        <option>Бүх төрөл</option>
-        <option>Хууль</option>
-        <option>Журам</option>
-        <option>Дүрэм</option>
-        <option>Стандарт</option>
-      </select>
+  <main class="max-w-6xl mx-auto mt-6 p-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <button onclick="showCategory('Хорих ял эдлүүлэх ажиллагааны чиглэлээр')" class="bg-white p-4 rounded shadow hover:bg-blue-50">Хорих ял эдлүүлэх ажиллагааны чиглэлээр</button>
+      <button onclick="showCategory('Баривчлах шийтгэл эдлүүлэх ажиллагааны чиглэлээр')" class="bg-white p-4 rounded shadow hover:bg-blue-50">Баривчлах шийтгэл эдлүүлэх ажиллагааны чиглэлээр</button>
+      <button onclick="showCategory('Шийдвэр гүйцэтгэх ажиллагааны чиглэлээр')" class="bg-white p-4 rounded shadow hover:bg-blue-50">Шийдвэр гүйцэтгэх ажиллагааны чиглэлээр</button>
+      <button onclick="showCategory('Хорихоос өөр төрлийн ял эдлүүлэх ажиллагааны чиглэлээр')" class="bg-white p-4 rounded shadow hover:bg-blue-50">Хорихоос өөр төрлийн ял эдлүүлэх ажиллагааны чиглэлээр</button>
+      <button onclick="showCategory('Албадан эмчлэх чиглэлээр')" class="bg-white p-4 rounded shadow hover:bg-blue-50">Албадан эмчлэх чиглэлээр</button>
+      <button onclick="showCategory('Санхүүгийн чиглэлээр')" class="bg-white p-4 rounded shadow hover:bg-blue-50">Санхүүгийн чиглэлээр</button>
+      <button onclick="showCategory('Захиргаа, удирдлагын чиглэлээр')" class="bg-white p-4 rounded shadow hover:bg-blue-50">Захиргаа, удирдлагын чиглэлээр</button>
+      <button onclick="showCategory('Хүний нөөцийн чиглэлээр')" class="bg-white p-4 rounded shadow hover:bg-blue-50">Хүний нөөцийн чиглэлээр</button>
+      <button onclick="showCategory('Цэргийн хэргийн мэдлэгийн чиглэлээр')" class="bg-white p-4 rounded shadow hover:bg-blue-50">Цэргийн хэргийн мэдлэгийн чиглэлээр</button>
+      <button onclick="showCategory('Шагнал урамшууллын чиглэлээр')" class="bg-white p-4 rounded shadow hover:bg-blue-50">Шагнал урамшууллын чиглэлээр</button>
+      <button onclick="showCategory('Ёс зүйн чиглэлээр')" class="bg-white p-4 rounded shadow hover:bg-blue-50">Ёс зүйн чиглэлээр</button>
+      <button onclick="showCategory('Шинээр томилогдсон алба хаагчдын чиглэлээр')" class="bg-white p-4 rounded shadow hover:bg-blue-50">Шинээр томилогдсон алба хаагчдын чиглэлээр</button>
     </div>
 
-    <section id="results" class="mt-6 space-y-3">
-      <div class="bg-white p-4 rounded shadow">
-        <h2 class="text-lg font-semibold">Шүүхийн шийдвэр гүйцэтгэх тухай хууль</h2>
-        <p class="text-sm text-gray-500">Төрөл: Хууль | Хэлтэс: Нийтийн эрх зүй | Хүчинтэй: 2021.02.01</p>
-        <a href="#" class="text-blue-600 underline">Баримт үзэх</a>
-      </div>
-
-      <div class="bg-white p-4 rounded shadow">
-        <h2 class="text-lg font-semibold">Хөдөлмөрийн дотоод журам</h2>
-        <p class="text-sm text-gray-500">Төрөл: Журам | Хэлтэс: Хүний нөөц | Хүчинтэй: 2025.01.01</p>
-        <a href="Хөдөлмөрийн дотоод журам 2025.pdf" 
-           class="text-blue-600 underline" 
-           target="_blank">
-          Баримт үзэх
-        </a>
-      </div>
+    <section id="results" class="mt-8 space-y-3">
+      <p class="text-gray-500 text-center">Бүлгээ сонгон хууль, журам үзнэ үү.</p>
     </section>
   </main>
 
-  <footer class="text-center text-sm text-gray-500 mt-10 mb-4">
+  <footer class="text-center text-sm text-gray-500 mt-10 mb-6">
     © 2025 Шүүхийн шийдвэр гүйцэтгэх байгууллага
   </footer>
 </body>
